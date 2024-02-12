@@ -2,6 +2,44 @@
   List of all movies
 </h1>
 
+<form action = "/insert_movie_record" method = "post">
+  <div>
+    <label for = "title_field" > Title </label>
+    <input id = "title_field" type = "text" name = "title_field" > 
+  </div>
+
+  <div>
+    <label for = "year_field" > Year </label>
+    <input id = "year_field" type = "text" name = "year_field"> 
+  </div>
+
+  <div>
+    <label for = "duration_field" > Duration </label>
+    <input id = "duration_field" type = "text" name = "duration_field" > 
+  </div>
+
+  <div>
+    <label for = "description_field" > Description </label>
+    <input id = "description_field" type = "text" name = "description_field"> 
+  </div>
+
+  <div>
+    <label for = "image_field" > Image </label>
+    <input id = "image_field" type = "text" name = "image_field"> 
+  </div>
+
+  <div>
+    <label for = "director_id_field" > Director </label>
+    <input id = "director_id_field" type = "text" name = "director_id_field"> 
+  </div>
+
+<button>Create movie</button>
+</form>
+
+
+
+
+</form>
 <hr>
 
 <table border="1">
@@ -52,8 +90,11 @@
       <% matching_directors = Director.where({ :id => a_movie.director_id }) %>
       
       <% the_director = matching_directors.at(0) %>
-
+      <% if the_director == nil%>
+        You need to insert a director name 
+      <%else%>
       <%= the_director.name %>
+      <%end %>
     </td>
 
     <td>
