@@ -16,14 +16,14 @@ class MoviesController < ApplicationController
   end
 
   def create 
-    m = Movie.new 
-    m.title = params.fetch("title_field")
-    m.year = params.fetch("year_field")
-    m.duration = params.fetch("duration_field")
-    m.description = params.fetch("description_field")
-    m.image = params.fetch("image_field")
-    m.director_id = params.fetch("director_id_field")
-    m.save
+    the_movie = Movie.new 
+    the_movie.title = params.fetch("title_field")
+    the_movie.year = params.fetch("year_field")
+    the_movie.duration = params.fetch("duration_field")
+    the_movie.description = params.fetch("description_field")
+    the_movie.image = params.fetch("image_field")
+    the_movie.director_id = params.fetch("director_id_field")
+    the_movie.save
 
     redirect_to("/movies")
   end 
@@ -39,5 +39,20 @@ class MoviesController < ApplicationController
 
     redirect_to("/movies")
   end
+
+  def update
+    m_id = params.fetch("the_id")
+    matching_relation = Movie.where({ :id => m_id })
+    the_movie = matching_relation.at(0)
+    the_movie.title = params.fetch("title_field")
+    the_movie.year = params.fetch("year_field")
+    the_movie.duration = params.fetch("duration_field")
+    the_movie.description = params.fetch("description_field")
+    the_movie.image = params.fetch("image_field")
+    the_movie.director_id = params.fetch("director_id_field")
+    the_movie.save
+
+    redirect_to("/movies/#{the_movie.id}")
+  end 
 
 end
